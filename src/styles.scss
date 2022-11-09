@@ -852,6 +852,8 @@ $green-font-color: #19b028;
 .global__container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  padding-top: $h-bypass;
 }
 
 .global__import {
@@ -3329,4 +3331,16 @@ option {
       transition: background-color 0.5s;
     }
   }
+}
+
+.bypass {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $h-bypass;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red-font-color;
+  z-index: 1000;
 }

@@ -20,6 +20,7 @@
   [ngClass]="globalVars.userIsDragging ? 'unselectable' : ''"
   *ngIf="!globalVars.requestingStorageAccess"
 >
+  <div class="bypass">by pass all backend</div>
   <router-outlet *ngIf="!globalVars.loadingInitialAppState"></router-outlet>
   <simple-center-loader
     *ngIf="globalVars.loadingInitialAppState"

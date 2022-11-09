@@ -354,41 +354,45 @@ export class AppComponent implements OnInit {
     // Load the theme
     this.themeService.init();
 
+    // *** temporary bypass all backend
+    this.globalVars.loadingInitialAppState = false;
+    // ***
+
     // Update the DeSo <-> Bitcoin exchange rate every five minutes. This prevents
     // a stale price from showing in a tab that's been open for a while
-    setInterval(() => {
-      this._updateDeSoExchangeRate();
-    }, 5 * 60 * 1000);
+    // setInterval(() => {
+    //   this._updateDeSoExchangeRate();
+    // }, 5 * 60 * 1000);
 
-    this.globalVars.updateEverything = this._updateEverything;
+    // this.globalVars.updateEverything = this._updateEverything;
 
     // We need to fetch this data before we start an import. Can remove once import code is gone.
-    this._updateDeSoExchangeRate();
-    this._updateAppState();
+    // this._updateDeSoExchangeRate();
+    // this._updateAppState();
 
-    this.identityService.info().subscribe((res) => {
-      // If the browser is not supported, display the browser not supported screen.
-      if (!res.browserSupported) {
-        this.globalVars.requestingStorageAccess = true;
-        return;
-      }
+    // this.identityService.info().subscribe((res) => {
+    //   // If the browser is not supported, display the browser not supported screen.
+    //   if (!res.browserSupported) {
+    //     this.globalVars.requestingStorageAccess = true;
+    //     return;
+    //   }
 
-      const isLoggedIn = this.backendApi.GetStorage(
-        this.backendApi.LastLoggedInUserKey
-      );
-      if (res.hasStorageAccess || !isLoggedIn) {
-        this.loadApp();
-      } else {
-        this.globalVars.requestingStorageAccess = true;
-        this.identityService.storageGranted.subscribe(() => {
-          this.globalVars.requestingStorageAccess = false;
-          this.loadApp();
-        });
-      }
-    });
+    //   const isLoggedIn = this.backendApi.GetStorage(
+    //     this.backendApi.LastLoggedInUserKey
+    //   );
+    //   if (res.hasStorageAccess || !isLoggedIn) {
+    //     this.loadApp();
+    //   } else {
+    //     this.globalVars.requestingStorageAccess = true;
+    //     this.identityService.storageGranted.subscribe(() => {
+    //       this.globalVars.requestingStorageAccess = false;
+    //       this.loadApp();
+    //     });
+    //   }
+    // });
 
-    this.installDD();
-    this.installAmplitude();
+    // this.installDD();
+    // this.installAmplitude();
   }
 
   loadApp() {
